@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { CounterService } from '../counter.service';
 
 @Component({
   selector: 'app-store',
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class StoreComponent implements OnInit {
   data = [];
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,public counterService:CounterService) {}
 
   ngOnInit(): void {
     let url =

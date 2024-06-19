@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroService,Hero } from '../hero.service';
 import { HttpClient } from '@angular/common/http';
+import { CounterService } from '../counter.service';
 
 @Component({
   selector: 'app-heroes',
@@ -13,7 +14,7 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
   heroList:[]=[];
 
-  constructor(private heroService: HeroService,private http:HttpClient) { }
+  constructor(private heroService: HeroService,private http:HttpClient,public counterService:CounterService) { }
 
   ngOnInit(): void {
     // this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
