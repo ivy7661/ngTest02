@@ -18,7 +18,7 @@ import { NgFor } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'ngTest02';
   heroList:[]=[];
 
