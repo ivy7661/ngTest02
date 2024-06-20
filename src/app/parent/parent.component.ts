@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChildComponent } from '../child/child.component';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -13,6 +14,8 @@ export class ParentComponent implements OnInit{
   public message:string='';
   public rxMessage:string='';
 
+  constructor(private user: UserService) {}
+
   ngOnInit(): void {
       
   }
@@ -22,5 +25,9 @@ export class ParentComponent implements OnInit{
   }
   receiveRxMessage(event:string) {
     this.message = event;
+  }
+
+  public sendData(): void {
+    this.user.updateYoutuber(100);
   }
 }
