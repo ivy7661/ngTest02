@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject,Observable } from 'rxjs';
 import { UserService } from '../user.service';
 
 @Component({
@@ -26,13 +26,29 @@ export class SubscribeComponent implements OnInit,OnDestroy{
   // user
   private youtuber$ = this.user.youtuber$;
 
+  public ytId:number = 0;
 
+  // source
+  public source$ = new Observable(subscriber => {
+    console.log('stream start');
+    subscriber.next(1);
+    subscriber.next(2);
+    subscriber.next(3);
+    console.log('stream end');
+    subscriber.complete();
+  });
 
   constructor(private user:UserService) {};
 
   ngOnInit(): void {
     this.youtuber$.subscribe(res => {
       console.log(res);
+      // this.ytId = res;
+
+      this.source$.subscribe({
+        next:data => console.log(`Observable 第一次訂閱：${data}`),
+        complete:() => console.log('第一次訂閱完成')
+      })
     });
 
 
