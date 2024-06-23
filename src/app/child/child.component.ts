@@ -25,38 +25,18 @@ export class ChildComponent implements OnInit{
     this.isTrue=true;
   }
   
-  public source:Subject<string>;
   public clickSubscription!: Subscription;
 
 
   constructor() {
-    this.source = new Subject<string>();
   }
 
   ngOnInit(): void {
-    this.source.subscribe({
-      next:value =>console.log(value),
-      error:err => console.log('Error:',err),
-      complete:() => console.log('complete')
-    })
-
-    this.source.next('hello');
-    this.source.next('world');
-
-    this.source.complete;
-
-
-    const source = fromEvent(document, 'click');
-    this.clickSubscription = source.subscribe((event: Event) => {
-      console.log('Document clicked!', event);
-    });
+    
   }
 
   ngOnDestroy():void {
-    this.source.unsubscribe();
-    if (this.clickSubscription) {
-      this.clickSubscription.unsubscribe();
-    }
+    
   }
 
 

@@ -43,14 +43,12 @@ export class SubscribeComponent implements OnInit,OnDestroy{
   ngOnInit(): void {
     this.youtuber$.subscribe(res => {
       console.log(res);
-      // this.ytId = res;
-
-      this.source$.subscribe({
-        next:data => console.log(`Observable 第一次訂閱：${data}`),
-        complete:() => console.log('第一次訂閱完成')
-      })
     });
 
+    this.source$.subscribe({
+      next:data => console.log(`Observable 第一次訂閱：${data}`),
+      complete:() => console.log('第一次訂閱完成')
+    })
 
     // this.youtuber$.next(1);  
     // if (this.observerBSubscription) {

@@ -4,6 +4,7 @@ import { StoreComponent } from './store/store.component';
 import { HeroesComponent } from './hero/hero.component';
 import { ParentComponent } from './parent/parent.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
+import { SourceComponent } from './source/source.component';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,10 @@ export const routes: Routes = [
   {
     path:'subscribe',
     component:SubscribeComponent
+  },
+  {
+    path:'source',
+    component:SourceComponent
   },
   {
     path: "**",
