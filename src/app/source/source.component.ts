@@ -76,6 +76,5 @@ export class SourceComponent implements OnInit{
     this._score.next(80);
     this.updateScore(90);
 
-    
   }
 }
