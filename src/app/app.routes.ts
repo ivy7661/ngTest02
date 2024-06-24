@@ -5,6 +5,7 @@ import { HeroesComponent } from './hero/hero.component';
 import { ParentComponent } from './parent/parent.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { SourceComponent } from './source/source.component';
+import { ParamComponent } from './param/param.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
   {
     path:'source',
     component:SourceComponent
+  },
+  {
+    path:'param',
+    component:ParamComponent
   },
   {
     path: "**",
