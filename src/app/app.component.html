@@ -1,24 +1,31 @@
+<div class="row">
+    <div class="col-3">
+        <app-aside-nav></app-aside-nav>
+    </div>
+    <div class="col-8">
+        <ul class="list">
+            <li class="list__item">
+                <a routerLink="">回首頁</a> |
+            </li>
+            <li class="list__item">
+                <a routerLink="store">Store</a> |
+            </li>
+            <li class="list__item">
+                <a routerLink="hero">Hero</a> |
+            </li>
+            <li class="list__item">
+                <a routerLink="parent">Parent</a> |
+            </li>
+            <li class="list__item">
+                <a routerLink="subscribe">subscribe</a> |
+            </li>
+            <li class="list__item">
+                <a routerLink="source">source</a>
+            </li>
+        </ul>
+        
+        <router-outlet />
+    </div>
+</div>
 
-<ul class="list">
-    <li class="list__item">
-        <a routerLink="">回首頁</a> |
-    </li>
-    <li class="list__item">
-        <a routerLink="store">Store</a> |
-    </li>
-    <li class="list__item">
-        <a routerLink="hero">Hero</a> |
-    </li>
-    <li class="list__item">
-        <a routerLink="parent">Parent</a> |
-    </li>
-    <li class="list__item">
-        <a routerLink="subscribe">subscribe</a> |
-    </li>
-    <li class="list__item">
-        <a routerLink="source">source</a>
-    </li>
-</ul>
-
-<router-outlet />
 

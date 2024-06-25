@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './page/home/home.component';
 import { StoreComponent } from './page/store/store.component';
+import { AsideNavComponent } from './component/aside-nav/aside-nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -11,7 +12,7 @@ import { NgFor } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HomeComponent, StoreComponent,RouterModule,HeroesComponent,NgFor],
+  imports: [RouterOutlet,HomeComponent, StoreComponent,RouterModule,HeroesComponent,AsideNavComponent,NgFor],
   providers: [
     HttpClientModule
   ],
