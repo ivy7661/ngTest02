@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { CounterService } from '../counter.service';
+import { CounterService } from '../../counter.service';
 
 @Component({
   selector: 'app-store',

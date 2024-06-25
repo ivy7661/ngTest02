@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ChildComponent } from '../child/child.component';
-import { UserService } from '../user.service';
-
+import { ChildComponent } from '../../component/child/child.component';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-parent',

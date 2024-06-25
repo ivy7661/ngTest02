@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeroService,Hero } from '../hero.service';
+import { HeroService,Hero } from '../../hero.service';
 import { HttpClient } from '@angular/common/http';
-import { CounterService } from '../counter.service';
+import { CounterService } from '../../counter.service';
 
 @Component({
   selector: 'app-heroes',

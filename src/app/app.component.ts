@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { StoreComponent } from './store/store.component';
+import { HomeComponent } from './page/home/home.component';
+import { StoreComponent } from './page/store/store.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { HeroesComponent } from './hero/hero.component';
+import { HeroesComponent } from './page/hero/hero.component';
 import { NgFor } from '@angular/common';
 
 @Component({

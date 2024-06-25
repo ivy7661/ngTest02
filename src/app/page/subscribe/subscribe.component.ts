@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject,Observable } from 'rxjs';
-import { UserService } from '../user.service';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-subscribe',
