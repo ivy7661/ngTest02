@@ -34,7 +34,7 @@ export const routes: Routes = [
     component:SourceComponent
   },
   {
-    path:'param',
+    path:'param/:id/:name',
     component:ParamComponent
   },
   {
