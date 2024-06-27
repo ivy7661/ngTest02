@@ -1,8 +1,15 @@
-<div class="side-nav">
-    <!-- <button type="button" (click)="toggleSidebar()">Toggle Sidebar</button> -->
+<div class="side-nav" [class.collapsed]="isCollapsed">
+    <button type="button" class="hamburger" (click)="toggleSidebar()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </button>
+    <div >
+        
+    </div>
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">System</a></li>
+        <li><a href="#" [class.visiblility]="visiblility" router-link="home">Home</a></li>
+        <li><a href="#" [class.visiblility]="visiblility">System</a></li>
         <li><a href="#"></a></li>
     </ul>
 </div>

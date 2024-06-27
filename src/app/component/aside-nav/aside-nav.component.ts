@@ -8,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './aside-nav.component.scss'
 })
 export class AsideNavComponent {
-
+  public isCollapsed = true;
+  public visiblility = false;
+  public toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+    this.visiblility = !this.visiblility;
+  }
 }
