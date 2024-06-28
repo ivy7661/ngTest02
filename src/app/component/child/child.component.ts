@@ -12,6 +12,7 @@ import { Subject,fromEvent,Subscription,of } from 'rxjs';
 export class ChildComponent implements OnInit{
   @Output() messageEvent = new EventEmitter<string>();
   @Output() rxMessageEvent = new Subject<string>();
+  @Output() uploadProjectData:EventEmitter<any> = new EventEmitter<any>();
 
   public isTrue:boolean=false;
 
@@ -26,8 +27,6 @@ export class ChildComponent implements OnInit{
   }
   
   public clickSubscription!: Subscription;
-
-
   constructor() {
   }
 
@@ -35,8 +34,12 @@ export class ChildComponent implements OnInit{
     
   }
 
-  ngOnDestroy():void {
-    
+  public uploadData() {
+    const projectData = {
+      name:'New Project',
+      status:'In Progress'
+    };
+    this.uploadProjectData.emit(projectData);
   }
 
 

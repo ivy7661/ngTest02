@@ -1,9 +1,13 @@
 
 
-<app-child (messageEvent)="receiveMessage($event)" (rxMessageEvent)="receiveRxMessage($event)"></app-child>
+<app-child (messageEvent)="receiveMessage($event)" (rxMessageEvent)="receiveRxMessage($event)" (uploadProjectData)="handleUpload($event)"></app-child>
 
 <p>{{message}}</p>
 
 <p>{{rxMessage}}</p>
 
 <button class="btn btn-info" (click)="sendData()">click me</button>
+<hr>
+<h2>從子元件來的</h2>
+<p>Name：{{projectData.name}}</p>
+<p>Status：{{projectData.status}}</p>

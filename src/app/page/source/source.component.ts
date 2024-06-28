@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { subscribe } from 'node:diagnostics_channel';
-import { Subscription, fromEvent,of,defer } from 'rxjs';
+import { Subscription, fromEvent,of,map,combineLatest, interval } from 'rxjs';
 
 
 @Component({
@@ -21,18 +21,18 @@ export class SourceComponent implements OnInit{
     })
   
     // const subscription=
-    const promiseFactory = () => new Promise((resolve)=> {
-      console.log(`Promise被執行了`);
-      setTimeout(()=> {
-        resolve(100);
-      },1000)
-    })
+    const sourceA$ = interval(1000).pipe(
+      map(data => `A${data+1}`)
+    );
+    const sourceB$ = interval(2000).pipe(
+      map(data => `B${data+1}`)
+    );
+    const sourceC$ = interval(3000).pipe(
+      map(data => `C${data+1}`)
+    );
 
-    const deferSource$ = defer(promiseFactory);
-    console.log(`示範用 defer 解決 Promise 問題：`);
-    deferSource$.subscribe(result => {
-      console.log(`Promise 結果:${result}`);
-    })
-    
-  }
+    const subscription = combineLatest([sourceA$,sourceB$,sourceC$]).subscribe(data => console.log(`combineLast:${data}`)
+    )
+  };
+
 }

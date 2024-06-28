@@ -12,6 +12,11 @@ import { UserService } from '../../user.service';
 export class ParentComponent implements OnInit{
   public message:string='';
   public rxMessage:string='';
+  public projectData = {
+    name:'',
+    status:''
+  };
+  
 
   constructor(private user: UserService) {}
 
@@ -28,5 +33,10 @@ export class ParentComponent implements OnInit{
 
   public sendData(): void {
     this.user.updateYoutuber(100);
+  }
+
+  public handleUpload(data:any) {
+    this.projectData.name=data.name;
+    this.projectData.status=data.status;
   }
 }
