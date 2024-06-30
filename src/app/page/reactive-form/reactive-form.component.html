@@ -1,0 +1,24 @@
+<label for="name">Name：</label>
+<input type="text" id="name" name="name" class="form-control" required minlength="4" appForbiddenName="bob" [(ngModel)]="actor.name" #name="ngModel">
+
+<div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+    <div *ngIf="name.hasError('required')">
+        Name is required.
+    </div>
+    <div *ngIf="name.hasError('minlength')">
+        Name must be at least 4 characters long.
+    </div>
+    <div *ngIf="name.hasError('forbiddenName')">
+        Name cann't be Bob.
+    </div>
+</div>
+
+<!-- <button type="submit" [disabled]="!profileForm.valid">Submit</button> -->
+
+<br>
+<br>
+<!-- <pre>{{profileForm.value | json }}</pre> -->
+
+<h4>Form Status</h4>
+<!-- <p>{{profileForm.status}}</p> -->
+ 

@@ -1,10 +1,11 @@
 import { Component, OnInit,inject } from '@angular/core';
 import { ActivatedRoute,ParamMap } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-param',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './param.component.html',
   styleUrl: './param.component.scss'
 })

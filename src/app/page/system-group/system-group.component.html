@@ -1,0 +1,38 @@
+<p>system-group</p>
+
+<h2 [ngStyle]="colorStyle">ngClass 練習</h2>
+<button type="button" (click)="swichColor()">Switch h2 color</button>
+
+<div 
+  *ngFor="let pictureUrl of pictureList" 
+  class="picture"
+  [ngStyle]="{'background-image': 'url(' + pictureUrl + ')'}"
+>
+</div>
+
+
+<h2>ngStyle</h2>
+<h3 [ngStyle]="getStyle()">點擊按鈕使字體變大</h3>
+<p>字體從 16px 起跳</p>
+<button (click)="addFontSize()">font-size + 1px</button>
+<button (click)="minusFontSize()">font-size -1px</button>
+
+<h2>ngFor + HttpCinent</h2>
+<hr>
+<div *ngFor="let weather of weatherData">
+    <p>縣市：{{weather.locationName}}</p>
+    <p>縣市代碼：{{weather.geocode}}</p>
+    <hr>
+</div>
+
+<div>
+  <p>Today is {{today | date}}</p>
+  <p>Or if you prefer, {{today | date:'fullDate'}}</p>
+  <p>The time is {{today | date:'h:mm a z'}}</p>
+</div>
+
+<h3>Card</h3>
+<div class="card">
+  <img src="https://picsum.photos/id/972/600/400" alt="">
+  <div class="overlay"></div>
+</div>
