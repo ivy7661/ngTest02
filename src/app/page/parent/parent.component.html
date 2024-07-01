@@ -1,6 +1,16 @@
 
 
-<app-child (messageEvent)="receiveMessage($event)" (rxMessageEvent)="receiveRxMessage($event)" (uploadProjectData)="handleUpload($event)"></app-child>
+<app-child #tChild (messageEvent)="receiveMessage($event)" (rxMessageEvent)="receiveRxMessage($event)" (uploadProjectData)="handleUpload($event)">
+    <div header>
+        <p>This is header content</p>
+    </div>
+    <div body>
+        <p>This is body content</p>
+    </div>
+    <div footer>
+        <p>This is footer content</p>
+    </div>
+</app-child>
 
 <p>{{message}}</p>
 
@@ -11,3 +21,7 @@
 <h2>從子元件來的</h2>
 <p>Name：{{projectData.name}}</p>
 <p>Status：{{projectData.status}}</p>
+
+
+<h3>viewChild</h3>
+<button type="button" (click)="callChildMethod(tChild)">CallChildMethod</button>

@@ -1,5 +1,5 @@
 import { Component,Output,EventEmitter, OnInit } from '@angular/core';
-import { Subject,fromEvent,Subscription,of } from 'rxjs';
+import { Subject,fromEvent,Subscription,of, interval, pairwise, take } from 'rxjs';
 
 @Component({
   selector: 'app-child',
@@ -13,26 +13,14 @@ export class ChildComponent implements OnInit{
   @Output() messageEvent = new EventEmitter<string>();
   @Output() rxMessageEvent = new Subject<string>();
   @Output() uploadProjectData:EventEmitter<any> = new EventEmitter<any>();
+  public donateAmount = [100,500,300];
 
-  public isTrue:boolean=false;
-
-  sendMessage() {
-    this.messageEvent.emit('Hello from child!')
-  }
-  useRxMessage() {
-    this.rxMessageEvent.next('Rx message!')
-  }
-  changeColor() {
-    this.isTrue=true;
-  }
-  
-  public clickSubscription!: Subscription;
-  constructor() {
-  }
-
-  ngOnInit(): void {
-    
-  }
+ ngOnInit(): void {
+  of(1,2,3).pipe(
+    pairwise()
+  ).subscribe(data => {console.log(`pairwise:${data}`)
+  })
+ }
 
   public uploadData() {
     const projectData = {
@@ -40,6 +28,10 @@ export class ChildComponent implements OnInit{
       status:'In Progress'
     };
     this.uploadProjectData.emit(projectData);
+  }
+
+  public sayHello(): void {
+    console.log('Hello from child！');
   }
 
 
