@@ -9,6 +9,7 @@ a {
 
 .list {
     display: flex;
+    flex-wrap: wrap;
     font-weight: 600;
     font-style: 32px;
 }

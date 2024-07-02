@@ -11,6 +11,7 @@ import { SystemGroupComponent } from './page/system-group/system-group.component
 import { EletronicClockComponent } from './page/eletronic-clock/eletronic-clock.component';
 import { DrivenFormComponent } from './page/driven-form/driven-form.component';
 import { ReactiveFormComponent } from './page/reactive-form/reactive-form.component';
+import { CounterComponent } from './page/counter/counter.component';
 
 export const routes: Routes = [
   {
@@ -61,6 +62,10 @@ export const routes: Routes = [
   {
     path:'reactiveForm',
     component:ReactiveFormComponent
+  },
+  {
+    path:'counter',
+    component:CounterComponent
   },
   {
     path: "**",
