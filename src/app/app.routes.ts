@@ -12,6 +12,7 @@ import { EletronicClockComponent } from './page/eletronic-clock/eletronic-clock.
 import { DrivenFormComponent } from './page/driven-form/driven-form.component';
 import { ReactiveFormComponent } from './page/reactive-form/reactive-form.component';
 import { CounterComponent } from './page/counter/counter.component';
+import { TodoComponent } from './page/todo/todo.component';
 
 export const routes: Routes = [
   {
@@ -66,6 +67,10 @@ export const routes: Routes = [
   {
     path:'counter',
     component:CounterComponent
+  },
+  {
+    path:'todo',
+    component:TodoComponent
   },
   {
     path: "**",

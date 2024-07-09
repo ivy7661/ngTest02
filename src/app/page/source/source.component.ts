@@ -1,38 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { subscribe } from 'node:diagnostics_channel';
 import { Subscription, fromEvent,of,map,combineLatest, interval } from 'rxjs';
-
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-source',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './source.component.html',
   styleUrl: './source.component.scss'
 })
 export class SourceComponent implements OnInit{
-  
-  
-  
+  public status: string = 'Processing';
+  public statusIcon = {
+    'status-block_launch': this.status === 'launched',
+    'status-block_offline': this.status === 'offline',
+    'status-block_processing': this.status === 'Processing'
+  }
 
   ngOnInit(): void {
-    fromEvent(document,'click').subscribe(data => {
-      console.log(data);
-    })
-  
-    // const subscription=
-    const sourceA$ = interval(1000).pipe(
-      map(data => `A${data+1}`)
-    );
-    const sourceB$ = interval(2000).pipe(
-      map(data => `B${data+1}`)
-    );
-    const sourceC$ = interval(3000).pipe(
-      map(data => `C${data+1}`)
-    );
 
-    const subscription = combineLatest([sourceA$,sourceB$,sourceC$]).subscribe(data => console.log(`combineLast:${data}`)
-    )
   };
+  public changeStatus(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.status = selectElement.value;
+    console.log(this.status);
+  }
+
+  public getStatusClass(): string {
+    return `status-block_${this.status.toLowerCase()}`
+  }
+
+  public alert() {
+    alert('被點了！！')
+  }
 
 }

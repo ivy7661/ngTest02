@@ -1,0 +1,28 @@
+.status-block {
+  width: 24px;
+  height: 24px;
+  background-color: aliceblue;
+
+  &_launch {
+    background-color: green;
+  }
+
+  &_offline {
+    background-color: red;
+  }
+
+  &_processing {
+    background-color: yellow;
+  }
+}
+
+.disable {
+  pointer-events: none;
+  cursor: pointer;
+  background-color: gray;
+}
+
+.cannotClick {
+  cursor: pointer;
+  pointer-events: none;
+}

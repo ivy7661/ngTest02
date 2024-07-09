@@ -1,1 +1,18 @@
-<p>source works!</p>
+<h1>{{status}}</h1>
+<div class="status-block"
+[ngClass]="{
+  'status-block_launch': status === 'launch',
+  'status-block_offline': status === 'offline',
+  'status-block_processing': status === 'Processing'
+}"
+></div>
+<br>
+<br>
+
+<select (change)="changeStatus($event)">
+  <option value="" selected>select</option>
+  <option value="launch" class="disable">Launch</option>
+  <option value="offline">Offline</option>
+</select>
+
+<div class="cannotClick" (click)="alert()">Can't Click</div>
