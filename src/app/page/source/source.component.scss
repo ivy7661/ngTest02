@@ -26,3 +26,14 @@
   cursor: pointer;
   pointer-events: none;
 }
+
+.tool {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  color: rgb(0, 139, 102);
+}
+
+.highlight {
+  color: red;
+}

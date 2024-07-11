@@ -5,20 +5,13 @@
     </header>
 </section>
 <section class="main" style="display: block;">
-    <input type="checkbox" id="toggle-all" [checked]="toggleAllBtn">
+    <input type="checkbox" id="toggle-all" [checked]="toggleAllBtn" (click)="toggleAll()">
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-        <li data-id="1601">
+        <li data-id="1601" *ngFor="let todo of todoDataList">
             <div class="view">
-                <input type="checkbox" id="item-checkbox" [checked]="check1">
-                <label for="item-checkbox">111</label>
-                <button>x</button>
-            </div>
-        </li>
-        <li data-id="1602">
-            <div class="view">
-                <input type="checkbox" id="item-checkbox" [checked]="check2">
-                <label for="item-checkbox">111</label>
+                <input type="checkbox" id="item-checkbox" [checked]="todo.status" (click)="clickCheck(todo.status)">
+                <label for="item-checkbox">{{todo.thing}}</label>
                 <button>x</button>
             </div>
         </li>

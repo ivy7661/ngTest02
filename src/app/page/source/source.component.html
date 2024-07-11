@@ -15,4 +15,19 @@
   <option value="offline">Offline</option>
 </select>
 
-<div class="cannotClick" (click)="alert()">Can't Click</div>
+
+<br>
+<br>
+<br>
+<h2>type and tools</h2>
+<div class="type" *ngFor="let item of getDataArray()">
+  <div class="type-name">Type：{{item.key}}</div>
+  <div class="type-tools">
+    <p class="tool">Tools：
+      <span *ngFor="let tool of item.value.TotalTool" [ngClass]="{'highlight': item.value.LaunchTool.includes(tool)}">
+        {{tool}}
+      </span>
+    </p>
+  </div>
+  <hr>
+</div>
