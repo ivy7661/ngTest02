@@ -31,3 +31,13 @@
   </div>
   <hr>
 </div>
+
+<h2>NgSwitch</h2>
+<ng-container [ngSwitch]="control">
+  <p *ngSwitchCase="'drag'">
+    drag！！！
+  </p>
+  <ng-container *ngSwitchCase="'file'">
+    file！！！
+  </ng-container>
+</ng-container>

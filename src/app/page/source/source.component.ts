@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { subscribe } from 'node:diagnostics_channel';
 import { Subscription, fromEvent,of,map,combineLatest, interval } from 'rxjs';
-import { NgClass, NgFor } from '@angular/common';
-
+import { NgClass, NgFor ,NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 interface LaunchItem {
   Type?: string;
   Status: string;
@@ -27,11 +26,12 @@ type ResultData = ResultDataItem[];
 @Component({
   selector: 'app-source',
   standalone: true,
-  imports: [NgClass, NgFor],
+  imports: [NgClass, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './source.component.html',
   styleUrl: './source.component.scss'
 })
 export class SourceComponent implements OnInit{
+  public control = 'drag';
   public status: string = 'Processing';
   public statusIcon = {
     'status-block_launch': this.status === 'launched',

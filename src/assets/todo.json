@@ -1,0 +1,17 @@
+[
+  {
+    "status":false,
+    "thing":"刷牙",
+    "editing": false
+  },
+  {
+    "status":false,
+    "thing":"洗臉",
+    "editing": false
+  },
+  {
+    "status":false,
+    "thing":"吃早餐",
+    "editing": false
+  }
+]
