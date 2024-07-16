@@ -27,7 +27,7 @@ export class TodoComponent implements OnInit{
   }
 
   public getData() {
-    this.http.get<Todo[]>('/assets/todo.json').subscribe(data => {
+    this.http.get<Todo[]>('http://localhost:3000/todo2_16').subscribe(data => {
       this.todoDataList = data;
     })
   }
@@ -38,10 +38,10 @@ export class TodoComponent implements OnInit{
       data.status = this.toggleAllBtn;
     })
 
-    this.http.put('/assets/todo.json' + this.toggleAllBtn, null).subscribe();
+    this.http.put('http://localhost:3000/todo2_16' + this.toggleAllBtn, null).subscribe();
   }
   public clickCheck(todo: Todo) {
-    this.http.put('/assets/todo.json' + todo.todoId, todo).subscribe();
+    this.http.put('http://localhost:3000/todo2_16' + todo.todoId, todo).subscribe();
     todo.status = !todo.status;
     if(this.todoCompleted.length === this.todoDataList.length) {
       this.toggleAllBtn = true;
@@ -51,7 +51,7 @@ export class TodoComponent implements OnInit{
   }
 
   delete(todo: Todo) {
-    this.http.delete('/assets/todo.json' + todo.todoId).subscribe();
+    this.http.delete('http://localhost:3000/todo2_16' + todo.todoId).subscribe();
     this.todoDataList = this.todoDataList.filter(data => data !== todo);
   }
 
@@ -62,7 +62,7 @@ export class TodoComponent implements OnInit{
       editing: false,
       todoId: new Date().getTime()
     }
-    this.http.post('/assets/todo.json', todo).subscribe(()=> {
+    this.http.post('http://localhost:3000/todo2_16',todo).subscribe(()=> {
       this.getData();
     });
     this.todoDataList.push(todo)
@@ -75,7 +75,7 @@ export class TodoComponent implements OnInit{
 
   update(todo: Todo) {
     todo.editing = false;
-    this.http.put('/assets/todo.json' + todo.todoId, todo).subscribe();
+    this.http.put('http://localhost:3000/todo2_16' + todo.todoId, todo).subscribe();
   }
 
   setTodoStatusType(type: number) {

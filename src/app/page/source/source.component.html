@@ -10,9 +10,9 @@
 <br>
 
 <select (change)="changeStatus($event)">
-  <option value="" selected>select</option>
-  <option value="launch" class="disable">Launch</option>
-  <option value="offline">Offline</option>
+  <option Footprint="" selected>select</option>
+  <option Footprint="launch" class="disable">Launch</option>
+  <option Footprint="offline">Offline</option>
 </select>
 
 
@@ -20,11 +20,12 @@
 <br>
 <br>
 <h2>type and tools</h2>
-<div class="type" *ngFor="let item of getDataArray()">
-  <div class="type-name">Type：{{item.key}}</div>
+<div class="type" >
+  <h3>Type：Spec</h3>
+  <div class="type-name">Status：{{data['Footprint'].Status}}</div>
   <div class="type-tools">
     <p class="tool">Tools：
-      <span *ngFor="let tool of item.value.TotalTool" [ngClass]="{'highlight': item.value.LaunchTool.includes(tool)}">
+      <span *ngFor="let tool of data['Footprint'].TotalTool" [ngClass]="{'highlight': data['Footprint'].LaunchTool.includes(tool)}">
         {{tool}}
       </span>
     </p>

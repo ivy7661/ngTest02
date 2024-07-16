@@ -1,7 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { subscribe } from 'node:diagnostics_channel';
 import { Subscription, fromEvent,of,map,combineLatest, interval } from 'rxjs';
-import { NgClass, NgFor ,NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { NgClass, NgFor ,NgIf,NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+
+interface IToolData {
+  Status: string;
+  LaunchTime: string | null;
+  TotalTool: string[];
+  LaunchTool: string[];
+}
+
+interface IData {
+  Footprint: IToolData;
+  Symbol: IToolData;
+}
 interface LaunchItem {
   Type?: string;
   Status: string;
@@ -10,9 +22,9 @@ interface LaunchItem {
   LaunchTool: string[];
 }
 
-interface IData {
-  [key:string]: LaunchItem;
-}
+// interface IData {
+//   [key:string]: LaunchItem;
+// }
 
 interface ResultDataItem {
   key: string;
@@ -26,7 +38,7 @@ type ResultData = ResultDataItem[];
 @Component({
   selector: 'app-source',
   standalone: true,
-  imports: [NgClass, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault],
+  imports: [NgClass, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, NgIf],
   templateUrl: './source.component.html',
   styleUrl: './source.component.scss'
 })
@@ -38,7 +50,7 @@ export class SourceComponent implements OnInit{
     'status-block_offline': this.status === 'offline',
     'status-block_processing': this.status === 'Processing'
   }
-  public data: IData = {
+  public data :IData= {
     Footprint: {
       Status: 'Launched',
       LaunchTime: null,
@@ -64,25 +76,24 @@ export class SourceComponent implements OnInit{
     },
   }
 
+  public jsonData = {};
+
   public newData: ResultDataItem[] = [];
 
   ngOnInit(): void {
-    const dateString = '2024-06-28';
-    const date = new Date(dateString);
-    const timestamp = date.getTime();
-    console.log(timestamp);
+    this.jsonData = JSON.stringify(this.data);
+    console.log(this.data);
+    console.log(this.jsonData);
 
-    this.dealData();
-    console.log(this.getDataArray());
 
   };
 
-  public getDataArray(): ResultData {
-    return Object.keys(this.data).map(key => ({
-      key,
-      value: this.data[key as keyof typeof this.data]
-    }));
-  }
+  // public getDataArray(): ResultData {
+  //   return Object.keys(this.data).map(key => ({
+  //     key,
+  //     value: this.data[key as keyof typeof this.data]
+  //   }));
+  // }
 
   public changeStatus(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
@@ -94,17 +105,17 @@ export class SourceComponent implements OnInit{
     return `status-block_${this.status.toLowerCase()}`
   }
 
-  public dealData() {
-    this.data['Footprint'].Type = 'Footprint';
+  // public dealData() {
+  //   this.data['Footprint'].Type = 'Footprint';
 
-    // this.newData.push(this.data['Footprint']);
-    // this.newData.push(this.data['Symbol']);
-    let toolItems = Object.values(this.data);
-    console.log(toolItems);
+  //   // this.newData.push(this.data['Footprint']);
+  //   // this.newData.push(this.data['Symbol']);
+  //   let toolItems = Object.values(this.data);
+  //   console.log(toolItems);
 
-    this.newData = this.getDataArray() as ResultData;
-    console.log(this.newData);
-  }
+  //   this.newData = this.getDataArray() as ResultData;
+  //   console.log(this.newData);
+  // }
 
 
 }
