@@ -5,7 +5,7 @@ import { NgClass, NgFor ,NgIf,NgSwitch, NgSwitchCase, NgSwitchDefault } from '@a
 
 interface IToolData {
   Status: string;
-  LaunchTime: string | null;
+  LaunchTime: number | null;
   TotalTool: string[];
   LaunchTool: string[];
 }
@@ -53,7 +53,7 @@ export class SourceComponent implements OnInit{
   public data :IData= {
     Footprint: {
       Status: 'Launched',
-      LaunchTime: null,
+      LaunchTime: 1721209592718,
       TotalTool: [
         'Algo-163',
         'Algo-172',
