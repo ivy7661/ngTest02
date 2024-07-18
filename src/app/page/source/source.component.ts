@@ -50,10 +50,10 @@ export class SourceComponent implements OnInit{
     'status-block_offline': this.status === 'offline',
     'status-block_processing': this.status === 'Processing'
   }
-  public data :IData= {
+  public testData = {
     Footprint: {
       Status: 'Launched',
-      LaunchTime: 1721209592718,
+      LaunchTime: 1721209592,
       TotalTool: [
         'Algo-163',
         'Algo-172',
@@ -64,7 +64,7 @@ export class SourceComponent implements OnInit{
     },
     Symbol: {
       Status: 'Launched',
-      LaunchTime: null,
+      LaunchTime: 1721209594,
       TotalTool: [
         'Algo-163',
         'Algo-172',
@@ -74,16 +74,30 @@ export class SourceComponent implements OnInit{
         'Algo-172',
       ]
     },
-  }
+    Threed: {
+      Status: 'Launched',
+      LaunchTime: 1721209599,
+      TotalTool: [
+        'Algo-163',
+        'Algo-172',
+        'Algo-190',
+      ],
+      LaunchTool: [
+        'Algo-172',
+      ]
+    },
+    Spec: {
+      Status: 'Launched',
+      LaunchTime: null,
+    },
+    SpecExist: false
+  };
 
   public jsonData = {};
 
   public newData: ResultDataItem[] = [];
 
   ngOnInit(): void {
-    this.jsonData = JSON.stringify(this.data);
-    console.log(this.data);
-    console.log(this.jsonData);
 
 
   };
