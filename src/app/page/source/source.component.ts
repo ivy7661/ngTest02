@@ -22,6 +22,20 @@ interface LaunchItem {
   LaunchTool: string[];
 }
 
+export interface ILaunchData {
+  Spec?: ITypeInfo;
+  SpecExist: boolean;
+  Footprint?: ITypeInfo;
+  Symbol?: ITypeInfo;
+  Threed?: ITypeInfo;
+}
+export interface ITypeInfo {
+  Status: string | undefined;
+  LaunchTime: number | null;
+  TotalTool?: string[];
+  LaunchTool?: string[];
+}
+
 // interface IData {
 //   [key:string]: LaunchItem;
 // }
@@ -50,7 +64,7 @@ export class SourceComponent implements OnInit{
     'status-block_offline': this.status === 'offline',
     'status-block_processing': this.status === 'Processing'
   }
-  public testData = {
+  public testData: ILaunchData = {
     Footprint: {
       Status: 'Launched',
       LaunchTime: 1721209592,

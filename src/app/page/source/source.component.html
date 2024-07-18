@@ -19,19 +19,6 @@
 <br>
 <br>
 <br>
-<h2>type and tools</h2>
-<div class="type" >
-  <h3>Type：Spec</h3>
-  <div class="type-name">Status：{{data['Footprint'].Status}}</div>
-  <div class="type-tools">
-    <p class="tool">Tools：
-      <span *ngFor="let tool of data['Footprint'].TotalTool" [ngClass]="{'highlight': data['Footprint'].LaunchTool.includes(tool)}">
-        {{tool}}
-      </span>
-    </p>
-  </div>
-  <hr>
-</div>
 
 <h2>NgSwitch</h2>
 <ng-container [ngSwitch]="control">
