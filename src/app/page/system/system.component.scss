@@ -81,6 +81,24 @@
     }
   }
 
+  .box {
+    width: 200px;
+    height: 300px;
+    border-left: 1px solid black;
+    position: relative; /* 使偽元素的定位相對於 .box */
+  }
+
+  .box::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    border-radius: 50%;
+    position: absolute;
+    left: -5px;
+    top: 100px;
+  }
+
 
 // :host {
 
@@ -88,4 +106,4 @@
 //     box-sizing: border-box;
 //     border-bottom: 1px solid #c8c8c8;
 // }
-// }  
+// }

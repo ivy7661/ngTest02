@@ -15,7 +15,7 @@
         <div class="view" *ngIf="!todo.editing">
           <input type="checkbox" id="item-checkb ox" [checked]="todo.status" (click)="clickCheck(todo)">
           <label for="item-checkbox" (dblclick)="edit(todo)">{{todo.thing}}</label>
-          <button (click)="delete(todo)">x</button>
+          <button (click)="deleteTodo(todo)" type="button">x</button>
         </div>
         <input #todoItemInput
         *ngIf="todo.editing"

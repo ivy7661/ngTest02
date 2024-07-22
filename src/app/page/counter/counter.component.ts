@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IState } from './state.interface';
-import { increment, decrement, reset } from '../../core/store/action/counter.action';
+import { increment, decrement, reset, setCounter } from '../../core/store/action/counter.action';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 
@@ -27,5 +27,9 @@ export class CounterComponent {
   }
   reset() {
     this.store.dispatch(reset());
+  }
+
+  setCounter() {
+    this.store.dispatch(setCounter({ value: 99 }));
   }
 }
