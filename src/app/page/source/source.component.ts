@@ -181,3 +181,17 @@ export class SourceComponent implements OnInit{
 //     }
 //   }
 // ]
+
+
+// if (value === 'Launched') {
+//   if (typeName === 'Footprint' && this.originData.Footprint?.Status === 'Offline') {
+//     this.openConfirmPopup();
+//   }else if (typeName === 'Symbol' && this.originData.Symbol?.Status === 'Offline') {
+//     this.openConfirmPopup();
+//   } else {
+//     this.changSelectItem(typeName, value);
+//   }
+// }else {
+//   console.log('change');
+//   this.changSelectItem(typeName, value);
+// }
