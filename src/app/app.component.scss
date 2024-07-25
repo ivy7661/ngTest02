@@ -1,9 +1,10 @@
 .list,.list__item {
     list-style: none;
+    margin: 3px 5px;
 }
 a {
     text-decoration: none;
-    color: #fa0;
+    color: lightseagreen;
 }
 
 .list {
@@ -11,4 +12,11 @@ a {
     flex-wrap: wrap;
     font-weight: 600;
     font-style: 32px;
+}
+
+.selected {
+  color: darkcyan;
+  font-weight: 700;
+  border-bottom: 2px solid darkcyan;
+  ;
 }

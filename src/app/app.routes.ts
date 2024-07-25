@@ -13,6 +13,7 @@ import { DrivenFormComponent } from './page/driven-form/driven-form.component';
 import { ReactiveFormComponent } from './page/reactive-form/reactive-form.component';
 import { CounterComponent } from './page/counter/counter.component';
 import { TodoComponent } from './page/todo/todo.component';
+import { MissionControlComponent } from './page/mission-control/mission-control.component';
 
 export const routes: Routes = [
   {
@@ -71,6 +72,10 @@ export const routes: Routes = [
   {
     path:'todo',
     component:TodoComponent
+  },
+  {
+    path:'astronautMission',
+    component: MissionControlComponent
   },
   {
     path: "**",
