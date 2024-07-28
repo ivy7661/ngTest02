@@ -1,15 +1,23 @@
 import { Component, OnInit,inject } from '@angular/core';
 import { ActivatedRoute,ParamMap } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
+
+interface IUserData {
+  id: string,
+  name: string
+}
 @Component({
   selector: 'app-param',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NgIf],
   templateUrl: './param.component.html',
   styleUrl: './param.component.scss'
 })
 export class ParamComponent implements OnInit{
+  public userData!: IUserData;
+
 
   // constructor(private route:ActivatedRoute) {}
   // @Input() id ='';
@@ -33,5 +41,9 @@ export class ParamComponent implements OnInit{
     //   this.id=p['id'];
     //   this.name=p['name'];
     // })
+
+    this.route.data.subscribe(user => {
+      this.userData = user['userData']
+    })
   }
 }

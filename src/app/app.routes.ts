@@ -14,6 +14,9 @@ import { ReactiveFormComponent } from './page/reactive-form/reactive-form.compon
 import { CounterComponent } from './page/counter/counter.component';
 import { TodoComponent } from './page/todo/todo.component';
 import { MissionControlComponent } from './page/mission-control/mission-control.component';
+import { userResolver } from './@resolves/user.resolver';
+import { LoginComponent } from './page/login/login.component';
+import { AuthGuard } from './@guard/auth.guard';
 
 export const routes: Routes = [
   {
@@ -43,15 +46,19 @@ export const routes: Routes = [
   },
   {
     path:'param/:id/:name',
-    component:ParamComponent
+    component:ParamComponent,
+    resolve: {
+      userData: userResolver
+    }
   },
   {
     path:'system',
-    component:SystemComponent
+    component:SystemComponent,
+    // canActivate: [AuthGuard],
   },
   {
     path:'systemGroup',
-    component:SystemGroupComponent
+    component:SystemGroupComponent,
   },
   {
     path:'eletronicClock',
@@ -76,6 +83,10 @@ export const routes: Routes = [
   {
     path:'astronautMission',
     component: MissionControlComponent
+  },
+  {
+    path:'login',
+    component: LoginComponent
   },
   {
     path: "**",

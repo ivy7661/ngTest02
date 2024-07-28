@@ -3,8 +3,8 @@
 <h2 [ngStyle]="colorStyle">ngClass 練習</h2>
 <button type="button" (click)="swichColor()">Switch h2 color</button>
 
-<div 
-  *ngFor="let pictureUrl of pictureList" 
+<div
+  *ngFor="let pictureUrl of pictureList"
   class="picture"
   [ngStyle]="{'background-image': 'url(' + pictureUrl + ')'}"
 >

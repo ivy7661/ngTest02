@@ -1,0 +1,14 @@
+<div class="mzone">
+  <h2 class="tittleZone">
+    TODO 系統
+  </h2>
+  <p>帳號：
+    <input type="text" [(ngModel)]="loginValue.AccountName" class="form-control" placeholder="帳號">
+  </p>
+  <p>密碼：
+    <input type="text" [(ngModel)]="loginValue.Password" class="form-control" placeholder="密碼">
+  </p>
+  <button type="button" class="btn btn-success text-white mm" (click)="login()" type="submit">登入</button>
+</div>
+
+

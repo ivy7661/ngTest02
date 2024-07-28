@@ -5,14 +5,13 @@ import { StoreComponent } from './page/store/store.component';
 import { AsideNavComponent } from './component/aside-nav/aside-nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { HeroesComponent } from './page/hero/hero.component';
-import { NgFor } from '@angular/common';
+import { ProcessBarComponent } from "./shared/process-bar/process-bar.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HomeComponent, StoreComponent,RouterModule,HeroesComponent,AsideNavComponent,NgFor],
+  imports: [RouterOutlet, HomeComponent, StoreComponent, RouterModule, HeroesComponent, AsideNavComponent, ProcessBarComponent],
   providers: [
     HttpClientModule
   ],
@@ -26,6 +25,6 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    
+
   }
 }

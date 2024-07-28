@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NgClass,NgStyle,NgFor } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { NgClass,NgStyle,NgFor, NgIf } from '@angular/common';
 import { FeatureService } from '../../feature.service';
 import { DatePipe } from '@angular/common';
 
@@ -7,7 +7,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-system-group',
   standalone: true,
-  imports: [NgClass,NgStyle,NgFor,DatePipe],
+  imports: [NgClass,NgStyle,NgFor,DatePipe, NgIf],
   templateUrl: './system-group.component.html',
   styleUrl: './system-group.component.scss'
 })
@@ -24,6 +24,7 @@ export class SystemGroupComponent {
   ]
 
   today = Date.now();
+
 
   public swichColor(): void {
     this.isBlue = !this.isBlue;
