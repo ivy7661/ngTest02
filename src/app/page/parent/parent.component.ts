@@ -1,47 +1,29 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostBinding, HostListener, OnInit, signal, viewChild, ViewChild } from '@angular/core';
 import { ChildComponent } from '../../component/child/child.component';
 import { UserService } from '../../user.service';
+import { FormsModule } from '@angular/forms';
+import { Signal } from '@angular/core';
 
 @Component({
   selector: 'app-parent',
   standalone: true,
-  imports: [ChildComponent],
+  imports: [ChildComponent, FormsModule],
   templateUrl: './parent.component.html',
   styleUrl: './parent.component.scss'
 })
-export class ParentComponent implements OnInit{
-  // @ViewChild(ChildComponent) childComponent!:ChildComponent;
+export class ParentComponent implements OnInit {
+  @ViewChild(ChildComponent) child!: ChildComponent;
+  public count = signal(0);
 
-  public message:string='';
-  public rxMessage:string='';
-  public projectData = {
-    name:'',
-    status:''
-  };
-  
+  public parentCount = 0;
+  public value = '';
 
-  constructor(private user: UserService) {}
 
   ngOnInit(): void {
-      
-  }
-  callChildMethod(tChild: ChildComponent):void {
-    tChild.sayHello();
   }
 
-  receiveMessage($event:string) {
-    this.message = $event;
-  }
-  receiveRxMessage(event:string) {
-    this.message = event;
+  public addCount() {
+    this.count.set(this.count()+1);
   }
 
-  public sendData(): void {
-    this.user.updateYoutuber(100);
-  }
-
-  public handleUpload(data:any) {
-    this.projectData.name=data.name;
-    this.projectData.status=data.status;
-  }
 }

@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable, OnInit } from '@angular/core';
+import { Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private userNameSource = new Subject<string>();
+  public userName$ = this.userNameSource.asObservable();
 
   public user = 'Tom';
 
@@ -13,5 +15,9 @@ export class UserService {
       id: id,
       name: name
     })
+  }
+
+  public updateUserName(name :string) {
+    this.userNameSource.next(name);
   }
 }

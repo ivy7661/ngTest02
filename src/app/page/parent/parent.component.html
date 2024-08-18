@@ -1,27 +1,15 @@
+<button type="button" (click)="addCount()">按我+1</button>
+
+<p> 1.目前數字：{{parentCount}}</p>
+<p> 2.父元件 value：{{value}}</p>
+<!-- <button type="button" (click)="sayHi()">Say Hi</button> -->
+
+<h3>Hot binding</h3>
 
 
-<app-child #tChild (messageEvent)="receiveMessage($event)" (rxMessageEvent)="receiveRxMessage($event)" (uploadProjectData)="handleUpload($event)">
-    <div header>
-        <p>This is header content</p>
-    </div>
-    <div body>
-        <p>This is body content</p>
-    </div>
-    <div footer>
-        <p>This is footer content</p>
-    </div>
-</app-child>
-
-<p>{{message}}</p>
-
-<p>{{rxMessage}}</p>
-
-<button class="btn btn-info" (click)="sendData()">click me</button>
 <hr>
-<h2>從子元件來的</h2>
-<p>Name：{{projectData.name}}</p>
-<p>Status：{{projectData.status}}</p>
+<h3>子元件</h3>
+<app-child [childCount]="parentCount" [value]="value" [countNum]="count"></app-child>
 
-
-<h3>viewChild</h3>
-<button type="button" (click)="callChildMethod(tChild)">CallChildMethod</button>
+<h3>signal</h3>
+<button type="button" (click)="addCount()"></button>

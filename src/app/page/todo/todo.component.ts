@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Todo, TodoStatusType } from '../../models/todo.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TodoService } from '../../@service/todo.service';
+import { TodoDirective } from '../../@directive/todo.directive';
 
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [NgFor, NgIf ,FormsModule,HttpClientModule],
+  imports: [NgFor, NgIf ,FormsModule,HttpClientModule, TodoDirective],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.scss'
 })

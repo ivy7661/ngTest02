@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-system',
   standalone: true,
-  imports: [FormsModule,NgIf],
+  imports: [FormsModule,NgIf, NgClass],
   templateUrl: './system.component.html',
   styleUrl: './system.component.scss'
 })
@@ -16,5 +16,6 @@ export class SystemComponent {
     Component: [],
     OtherComponent: ''
   };
+
 
 }

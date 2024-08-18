@@ -21,4 +21,16 @@
 
 <h4>Form Status</h4>
 <!-- <p>{{profileForm.status}}</p> -->
- 
+
+
+<h2>get Name</h2>
+<p>Name：{{newName}}</p>
+
+
+<!-- <h2 *ngIf="counter$ | async as num">Hello {{num}}!</h2> -->
+
+<h2>signal</h2>
+<div>counter: {{ counter() }}</div>
+
+
+<button type="button" (click)="updateCount()">{{ counter() }}</button>
