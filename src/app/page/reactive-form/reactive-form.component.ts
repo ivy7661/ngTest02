@@ -7,7 +7,7 @@ import { forbiddenNameValidator } from '../../shared/forbidden-name.directive';
 import { UserService } from '../../@service/user.service';
 import { interval, Observable, startWith, Subscription, tap } from 'rxjs';
 
-interface Iactor {
+interface IActor {
   name:string;
   role:string;
   skill:string;
@@ -20,12 +20,10 @@ interface Iactor {
   templateUrl: './reactive-form.component.html',
   styleUrl: './reactive-form.component.scss'
 })
-export class ReactiveFormComponent implements OnInit, OnDestroy{
+export class ReactiveFormComponent implements OnInit {
   private userService = inject(UserService);
   private userSubscription!: Subscription;
-  public counter$!: Observable<number>;
-  public newName!: string;
-  public counter = signal(1);
+
 
   // public profileForm = this.fb.group({
   //   firstName:['',Validators.required],
@@ -37,7 +35,7 @@ export class ReactiveFormComponent implements OnInit, OnDestroy{
   // });
   public actorForm:FormGroup = new FormGroup({})
 
-  public actor:Iactor={
+  public actor:IActor={
     name:'',
     role:'',
     skill:''
@@ -48,6 +46,10 @@ export class ReactiveFormComponent implements OnInit, OnDestroy{
   };
 
   ngOnInit(): void {
+    this.setFormRule();
+  }
+
+  public setFormRule(): void {
     this.actorForm = new FormGroup({
       name: new FormControl(
         this.actor.name, [
@@ -58,34 +60,6 @@ export class ReactiveFormComponent implements OnInit, OnDestroy{
       role: new FormControl(this.actor.role),
       skill: new FormControl(this.actor.skill, Validators.required),
     });
-
-    this.userSubscription = this.userService.userName$.subscribe(res => {
-      this.newName = res;
-    })
-
-    let observable = interval(1000);
-
-    this.counter$ = observable.pipe(
-      tap((i) => console.log('counter = ', i)),
-      startWith(0),
-    );
-
-    this.counter.set(99);
   }
 
-  ngOnDestroy(): void {
-    console.log(this.userSubscription.closed);
-  }
-
-  get name() {
-    return this.actorForm.get('name');
-  }
-
-  get skill() {
-    return this.actorForm.get('skii');
-  }
-
-  public updateCount() {
-    this.counter.update(cur => cur+1)
-  }
 }
