@@ -1,0 +1,10 @@
+<div [ngSwitch]="method">
+  <div *ngSwitchCase="'A'">
+    <label for="width">Width (A)：</label>
+    <input type="text" [(ngModel)]="width"  (ngModelChange)="onInputChange('width', $event)">
+  </div>
+  <div *ngSwitchCase="'B'">
+    <label for="height">Height (B)：</label>
+    <input type="text" [(ngModel)]="height" (ngModelChange)="onInputChange('height', $event)">
+  </div>
+</div>

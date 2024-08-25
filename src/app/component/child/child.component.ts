@@ -5,11 +5,13 @@ import { IProduct } from '../../models/product.model';
 import { log } from 'console';
 import { Subject,fromEvent,Subscription,of, interval, pairwise, take } from 'rxjs';
 import { GrandsonComponent } from '../grandson/grandson.component';
+import { NgSwitch, NgSwitchCase } from '@angular/common';
+import { MethodComponent } from '../method/method.component';
 
 @Component({
   selector: 'app-child',
   standalone: true,
-  imports: [FormsModule, GrandsonComponent],
+  imports: [FormsModule, GrandsonComponent, NgSwitch, NgSwitchCase, MethodComponent],
   templateUrl: './child.component.html',
   styleUrl: './child.component.scss'
 })
@@ -17,7 +19,10 @@ import { GrandsonComponent } from '../grandson/grandson.component';
 export class ChildComponent implements OnInit, OnChanges {
   @Input() public productData: IProduct = {
     id: null,
-    name: ''
+    name: '',
+    method: '',
+    width: null,
+    height: null
   };
 
   ngOnInit(): void {
@@ -27,5 +32,11 @@ export class ChildComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     // console.log(this.productData);
   }
+
+  public setMethod(method: string) {
+    this.productData.method = method;
+  }
+
+
 
 }

@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 export class GrandsonComponent {
   @Input() public grandsonProductData:IProduct = {
     id: null,
-    name: ''
+    name: '',
+    method: ''
   }
 
 }

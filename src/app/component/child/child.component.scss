@@ -30,3 +30,13 @@ $font: 8px 12px 16px 24px 30px;
 .element-large {
   font-size: nth($font, 5); // 使用 $font 中的第五個值，即 30px
 }
+
+.method-A {
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.method-B {
+  background-color: lightpink;
+  cursor: pointer;
+}

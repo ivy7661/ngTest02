@@ -1,11 +1,30 @@
 
 <h3>子元件 Product Data</h3>
+<h4>Method</h4>
+<div class="w-100 d-flex justify-centent-between">
+  <div class="w-25 method-A" (click)="setMethod('A')">method-A</div>
+  <div class="w-25 method-B" (click)="setMethod('B')">method-B</div>
+</div>
+<br>
 <label for="id">ID：</label>
 <input type="text" id="id" [(ngModel)]="productData.id">
 <br>
-<br>
 <label for="product">Product：</label>
 <input type="text" id="product" [(ngModel)]="productData.name">
+<br>
+<label for="method">Method：</label>
+<input type="text" id="method" [(ngModel)]="productData.method">
+
+<hr>
+<label for="width">父元件 Width：</label>
+<input type="text" id="width" [(ngModel)]="productData.width">
+<br>
+<label for="height">父元件 Height：</label>
+<input type="text" id="height" [(ngModel)]="productData.height">
+<app-method [method]="productData.method" [(width)]="productData.width" [(height)]="productData.height"></app-method>
+
+
+
 
 <hr>
 
