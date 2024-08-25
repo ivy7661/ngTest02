@@ -1,9 +1,14 @@
 
-<!-- <button type="button" (click)="childAddCount()">子元件Count增加</button>
-<p>子元件的 count：{{childCount}}</p>
-<p>子元件的 value：{{value}}</p>
-<input type="text" [(ngModel)]="value"> -->
+<h3>子元件 Product Data</h3>
+<label for="id">ID：</label>
+<input type="text" id="id" [(ngModel)]="productData.id">
+<br>
+<br>
+<label for="product">Product：</label>
+<input type="text" id="product" [(ngModel)]="productData.name">
 
-<p>color gold</p>
-<p #hoverText>Hover over this text to see the background color change</p>
+<hr>
+
+<h3>孫子元件 Product Data</h3>
+<app-grandson [grandsonProductData]="productData"></app-grandson>
 
