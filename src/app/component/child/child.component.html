@@ -11,6 +11,7 @@
 <br>
 <label for="product">Product：</label>
 <input type="text" id="product" [(ngModel)]="productData.name">
+<p>Product Name：{{productData.name}}</p>
 <br>
 <label for="method">Method：</label>
 <input type="text" id="method" [(ngModel)]="productData.method">
@@ -30,4 +31,9 @@
 
 <h3>孫子元件 Product Data</h3>
 <app-grandson [grandsonProductData]="productData"></app-grandson>
+
+<div [ngSwitch]="!!productData.name">
+  <p *ngSwitchCase="true">{{productData.name}}</p>
+  <p *ngSwitchDefault>- -</p>
+</div>
 

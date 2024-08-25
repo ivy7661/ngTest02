@@ -1,15 +1,13 @@
-<button type="button" (click)="addCount()">按我+1</button>
+<hr>
+<button class="btn btn-info" type="button" (click)="getProduct()">取得資料</button>
 
-<p> 1.目前數字：{{parentCount}}</p>
-<p> 2.父元件 value：{{value}}</p>
-<!-- <button type="button" (click)="sayHi()">Say Hi</button> -->
-
-<h3>Hot binding</h3>
+<hr>
+<h3>父元件 Product data</h3>
+<p>ID：{{productData.id}}</p>
+<p>Product：{{productData.name}}</p>
 
 
 <hr>
 <h3>子元件</h3>
-<app-child [childCount]="parentCount" [value]="value" [countNum]="count"></app-child>
+<app-child [productData]="productData"></app-child>
 
-<h3>signal</h3>
-<button type="button" (click)="addCount()"></button>
