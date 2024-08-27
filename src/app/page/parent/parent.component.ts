@@ -27,9 +27,14 @@ export class ParentComponent implements OnInit {
     name: '',
     method:''
   };
+  public parentClerk = {
+    name:'',
+    sales: 0
+  };
 
 
   ngOnInit(): void {
+    this.parentClerk = this.productService.clerk;
   }
 
   public getProduct() {

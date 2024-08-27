@@ -1,1 +1,29 @@
-<div class="speech-bubble"></div>
+<div class="silkscreen-dropdown common-me-lg">
+  <form>
+    <div class="silkscreen-dropdown__title">
+      <p [ngSwitch]="silkscreenData.BaseObject.RuleItemList.length">
+        <span *ngSwitchCase="0">- -</span>
+        <span *ngSwitchCase="1">{{ silkscreenData.BaseObject.RuleItemList[0].Name }}</span>
+        <span *ngSwitchDefault>{{ silkscreenData.BaseObject.RuleItemList.length }} objects selected</span>
+      </p>
+      <hr>
+    </div>
+    <div class="dropdown">
+        <div class="dropdown-item"
+        *ngFor="let optionItem of basedOnList"
+        >
+          <!-- unchecked -->
+          <img *ngIf="!hasBasedOnItem(optionItem.Name)" class="silkscreen-dropdown__icon"
+          src="../../../assets/icon/unchecked.svg"
+          (click)="setBasedOn(optionItem)"/>
+
+          <!-- checked -->
+          <img *ngIf="hasBasedOnItem(optionItem.Name)"  class="silkscreen-dropdown__icon"
+          src="../../../assets/icon/checked.svg"
+          (click)="removeBasedOn(optionItem.Name)"/>
+
+          <p>{{optionItem.Name}}</p>
+        </div>
+    </div>
+  </form>
+</div>
