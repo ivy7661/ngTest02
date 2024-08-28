@@ -1,5 +1,9 @@
-
+<h3>孫子元件 Product Data</h3>
+<app-grandson [grandsonProductData]="productData"></app-grandson>
+<hr>
 <h3>子元件 Product Data</h3>
+<h4>Emit mode</h4>
+<button type="button" (click)="emitMode()">Emit mode</button>
 <h4>Method</h4>
 <div class="w-100 d-flex justify-centent-between">
   <div class="w-25 method-A" (click)="setMethod('A')">method-A</div>
@@ -31,11 +35,5 @@
 
 <hr>
 
-<h3>孫子元件 Product Data</h3>
-<app-grandson [grandsonProductData]="productData"></app-grandson>
 
-<div [ngSwitch]="!!productData.name">
-  <p *ngSwitchCase="true">{{productData.name}}</p>
-  <p *ngSwitchDefault>- -</p>
-</div>
 

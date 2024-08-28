@@ -1,6 +1,20 @@
-<label for="id">ID：</label>
+<!-- <label for="id">ID：</label>
 <input type="text" id="id" [(ngModel)]="grandsonProductData.id">
 <br>
 <br>
 <label for="product">Product：</label>
-<input type="text" id="product" [(ngModel)]="grandsonProductData.name">
+<input type="text" id="product" [(ngModel)]="grandsonProductData.name"> -->
+<hr>
+<h3>silkscreenData</h3>
+<div class="pb-5">
+  <form [formGroup]="styleForm">
+    <input class="silkscreen-content__img-input"
+      formControlName="chamfer" (ngModelChange)="onChamferSizeValueChange($event)">
+  </form>
+
+    <!-- 顯示驗證錯誤 -->
+    <div *ngIf="styleForm.get('chamfer')?.invalid && styleForm.get('chamfer')?.touched  && currentMode === 'edit'"
+    class="silkscreen-content__text-alert silkscreen-content__text-alert_center">
+      <span *ngIf="styleForm.get('chamfer')?.errors?.['greaterThanZero']">*The value must be greater than 0.</span>
+    </div>
+</div>

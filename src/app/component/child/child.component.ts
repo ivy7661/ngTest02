@@ -34,9 +34,9 @@ export class ChildComponent implements OnInit, OnChanges {
 
   @Input() public currentMode: IMethodMode = 'edit';
 
+
   ngOnInit(): void {
-    // console.log(this.productData);
-    this.childClerk = this.productService.clerk;
+
   }
 
   ngOnChanges(): void {
@@ -45,6 +45,10 @@ export class ChildComponent implements OnInit, OnChanges {
 
   public setMethod(method: string) {
     this.productData.method = method;
+  }
+
+  public emitMode() {
+    this.productService.ruleSubject.next('edit');
   }
 
 
