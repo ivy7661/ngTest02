@@ -44,6 +44,7 @@ export class SystemGroupComponent implements OnInit{
       }
     }
   ]
+
   public silkscreenData: ISilkscreenData = {
     BaseObject: {
       RuleItemList: [

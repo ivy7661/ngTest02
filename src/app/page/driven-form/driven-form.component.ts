@@ -35,6 +35,7 @@ export class DrivenFormComponent implements OnInit {
   public setMethodService = inject(SetMethodService);
   public methodSubject$ = this.setMethodService.methodSubject$
   public currentMode = 'edit';
+  public isTouched: boolean = false;
   public showAlert = {
     mainLayer: false,
     basedOn: false,
@@ -44,7 +45,7 @@ export class DrivenFormComponent implements OnInit {
     chamferSize: false,
     radiusSize: false,
   }
-  public method = 'CornerLMark'; // Normal, Rectangle, CornerLMark
+  public method = 'Normal'; // Normal, Rectangle, CornerLMark
   public mainLayerList = [
     'Package Geometry',
     'Package Geometry02'
@@ -61,6 +62,21 @@ export class DrivenFormComponent implements OnInit {
     },
     {
       Name: 'secondOutline',
+      Method: 'AirGap',
+      Value: {
+        Method: 'ConstantValue',
+        Value: 0.2
+      }
+    }
+  ]
+
+  public normalPadstackList = [
+    {
+      PadLayer: {
+        MainLayer: 'BeginLayer',
+        ItemLayer: 'RegularPad'
+      },
+      PadType: 'ALLTYPE',
       Method: 'AirGap',
       Value: {
         Method: 'ConstantValue',
@@ -126,7 +142,7 @@ export class DrivenFormComponent implements OnInit {
           Method: 'AirGap',
           Value: {
             Method: 'ConstantValue',
-            Value: 0.2
+            Value: null
           }
         }
       ],
@@ -153,6 +169,7 @@ export class DrivenFormComponent implements OnInit {
 
 
   public validateNegative(model: NgModel, controlName: keyof IShowAlert): void {
+    this.isTouched = true;
     const value = model.value;
 
     if (value < 0) {

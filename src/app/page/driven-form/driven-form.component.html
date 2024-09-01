@@ -15,7 +15,7 @@
         (blur)="validateNegative(iNormalAirGap, 'normalAirGap')"
         [(ngModel)]="normalAirGap"
         [ngClass]="{
-          'input_alert': isInputInvalid(iNormalAirGap.errors),
+          'input_alert': isTouched && isInputInvalid(iNormalAirGap.errors),
           }"
         [disabled]="currentMode !== 'edit'"
       >
