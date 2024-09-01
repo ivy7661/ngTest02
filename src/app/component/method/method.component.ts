@@ -1,6 +1,7 @@
 import { NgSwitch, NgSwitchCase } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { SetMethodService } from '../../@service/set-method.service';
 
 @Component({
   selector: 'app-method',
@@ -10,18 +11,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './method.component.scss'
 })
 export class MethodComponent {
-  @Input() public method: string = '';
-  @Input() public width?: number | null = null;
-  @Input() public height?: number | null = null;
+  public setMethodService = inject(SetMethodService);
+  public currentMethod = '';
 
-  @Output() widthChange = new EventEmitter<number | null>();
-  @Output() heightChange = new EventEmitter<number | null>();
-
-  public onInputChange(type: 'width' | 'height', value: number | null) {
-    if (type === 'width') {
-      this.widthChange.emit(value);
-    } else if (type === 'height') {
-      this.heightChange.emit(value);
-    }
+  public setMethod(method: string) {
+    this.setMethodService.setMethod(method);
   }
 }

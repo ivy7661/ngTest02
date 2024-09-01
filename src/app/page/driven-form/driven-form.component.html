@@ -1,23 +1,197 @@
-<form #form="ngForm">
-    <div class="formGroup">
-        <label>帳號：
-            <input #iAccount="ngModel" type="email" class="formControl" name="userEmail" id="email" [(ngModel)]="myEmail" pattern="^[a-zA-Z0-9.!#$%&』*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$" required>
-        </label>
+<button type="button">Save</button>
+<hr>
+<app-method></app-method>
+
+<form #form="ngForm" class="silkscreen-content">
+  <h5 class="silkscreen-content__title">Air Gap</h5>
+  <!-- Normal airGap -->
+  <ng-container *ngIf="method === 'Normal'">
+    <div class="silkscreen-content__input-container common-me-md">
+      <input class="silkscreen-content__input"
+        placeholder="- -"
+        name="normalAirGap"
+        #iNormalAirGap="ngModel"
+        required
+        (blur)="validateNegative(iNormalAirGap, 'normalAirGap')"
+        [(ngModel)]="normalAirGap"
+        [ngClass]="{
+          'input_alert': isInputInvalid(iNormalAirGap.errors),
+          }"
+        [disabled]="currentMode !== 'edit'"
+      >
     </div>
-    <div class="errors" *ngIf="iAccount.errors">
-        <p *ngIf="iAccount.hasError('required')">請輸入帳號</p>
-        <p *ngIf="iAccount.hasError('pattern')">信箱格式錯誤</p>
+    <!-- 顯示驗證錯誤 -->
+    <div *ngIf="iNormalAirGap?.errors && currentMode === 'edit' && showAlert.normalAirGap"
+      class="silkscreen-content__text-alert">
+      <span *ngIf="iNormalAirGap?.hasError('required')">*The value is required.</span>
+      <span *ngIf="iNormalAirGap?.hasError('min')">*The value cannot be negative.</span>
     </div>
-    <br>
-    <div class="formGroup">
-        <label>密碼：
-            <input #iPassword="ngModel" type="password" class="formControl" name="userPassword" id="password" [(ngModel)]="myPassword" minlength="6" required>
-        </label>
+  </ng-container>
+  <!-- Rectangle airGap -->
+  <ng-container *ngIf="method === 'Rectangle'">
+    <div class="silkscreen-content__input-container common-me-md">
+      <input class="silkscreen-content__input"
+        placeholder="- -"
+        name="airGap"
+        #iRectangleAirGap="ngModel"
+        required
+        (blur)="validateNegative(iRectangleAirGap, 'rectangleAirGap')"
+        [(ngModel)]="rectangleAirGap"
+        [ngClass]="{
+          'input_alert': isInputInvalid(iRectangleAirGap.errors),
+          }"
+        [disabled]="currentMode !== 'edit'"
+      >
     </div>
-    <div class="errors" *ngIf="iPassword.errors">
-        <p *ngIf="iPassword.hasError('required')">請輸入密碼</p>
-        <p *ngIf="iPassword.hasError('minlength')">密碼長度須超過 6 字元</p>
+    <!-- 顯示驗證錯誤 -->
+    <div *ngIf="iRectangleAirGap?.errors && currentMode === 'edit' && showAlert.rectangleAirGap"
+      class="silkscreen-content__text-alert">
+      <span *ngIf="iRectangleAirGap?.hasError('required')">*The value is required.</span>
+      <span *ngIf="iRectangleAirGap?.hasError('min')">*The value cannot be negative.</span>
     </div>
+  </ng-container>
+</form>
+<hr>
+<form #form="ngForm" class="silkscreen-content">
+  <h5 class="silkscreen-content__title">Length</h5>
+  <ng-container *ngIf="method === 'CornerLMark'">
+    <div class="silkscreen-content__input-container common-me-md">
+      <input class="silkscreen-content__input"
+        placeholder="- -"
+        name="length"
+        #iLength="ngModel"
+        (blur)="validateNegative(iLength, 'length')"
+        [(ngModel)]="lengthAirGap"
+        [ngClass]="{
+          'input_alert': isInputInvalid(iLength.errors),
+          }"
+        [disabled]="currentMode !== 'edit'"
+      >
+    </div>
+    <!-- 顯示驗證錯誤 -->
+    <div *ngIf="iLength?.errors && currentMode === 'edit' && showAlert.length"
+      class="silkscreen-content__text-alert">
+      <span *ngIf="iLength?.hasError('min')">*The value cannot be negative.</span>
+    </div>
+  </ng-container>
 </form>
 
-<pre>{{form.value | json}}</pre>
+<hr>
+<form #form="ngForm" class="silkscreen-content">
+  <h5 class="silkscreen-content__title">Mark Style</h5>
+  <ng-container *ngIf="method !== 'CornerLMark'">
+    <div class="silkscreen-content__input-container common-me-md">
+      <input class="silkscreen-content__input"
+        placeholder="- -"
+        name="length"
+        #iLength="ngModel"
+        (blur)="validateNegative(iLength, 'normalAirGap')"
+        [(ngModel)]="lengthAirGap"
+        [ngClass]="{
+          'input_alert': isInputInvalid(iLength.errors),
+          }"
+        [disabled]="currentMode !== 'edit'"
+      >
+    </div>
+    <!-- 顯示驗證錯誤 -->
+    <div *ngIf="iLength?.errors && currentMode === 'edit' && showAlert.length"
+      class="silkscreen-content__text-alert">
+      <span *ngIf="iLength?.hasError('min')">*The value cannot be negative.</span>
+    </div>
+  </ng-container>
+</form>
+
+<hr>
+<form #form="ngForm">
+  <p class="silkscreen-content__img-title">Chamfer</p>
+  <img class="silkscreen-content__img common-mb-sm"
+  [ngClass]="{
+    'silkscreen-content__img_selected': silkscreenData.SilkscreenPin1Mark.Style === 'Chamfer'
+  }"
+  (click)="setMarkStyle('Chamfer')"
+  src="https://asiapublictest.z11.web.core.windows.net/RuleManager/Sillkscreen/mark_2.svg" alt="Chamfer">
+  <ng-container *ngIf="silkscreenData.SilkscreenPin1Mark.Style === 'Chamfer'">
+    <div class="silkscreen-content__img-caption-container common-mb-xs">
+      <p class="silkscreen-content__img-caption">a</p>
+      <input class="silkscreen-content__img-input"
+      name="chamferSize"
+      #iChamferSize="ngModel"
+      (blur)="validateZeroAndNegative(iChamferSize, 'chamferSize')"
+      [(ngModel)]="chamferSizeValue"
+      [ngClass]="{
+        'silkscreen-content__input_alert': isInputInvalid('chamfer'),
+        'silkscreen-input-edit': currentMode === 'edit'}"
+      >
+      <p class="silkscreen-content__img-caption">mm</p>
+    </div>
+    <!-- 顯示驗證錯誤 -->
+    <div *ngIf="iChamferSize?.errors && currentMode === 'edit' && showAlert.chamferSize"
+    class="silkscreen-content__text-alert">
+    <span *ngIf="iChamferSize?.hasError('positive')">*The value cannot be negative or zero.</span>
+    </div>
+  </ng-container>
+
+</form>
+
+<hr>
+<div class="silkscreen-content">
+  <h5 class="silkscreen-content__title">Class</h5>
+  <div class="silkscreen-dropdown common-me-lg"
+  [ngClass]="{
+    'silkscreen-dropdown_disabled': currentMode !== 'edit',
+    'silkscreen-dropdown_alert': showAlert.mainLayer
+    }">
+    <div>
+      <div [ngSwitch]="!!silkscreenData.Layer.MainLayer" class="silkscreen-dropdown__title">
+        <p *ngSwitchCase="true">{{silkscreenData.Layer.MainLayer}}</p>
+        <p *ngSwitchDefault>- -</p>
+      </div>
+      <div class="dropdown">
+          <div class="dropdown-item"
+          *ngFor="let optionItem of mainLayerList"
+          (click)="setProperty('mainLayer', optionItem)"
+          >
+            <p>{{optionItem}}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- 顯示驗證錯誤 -->
+  <span *ngIf="showAlert.mainLayer" class="silkscreen-content__text-alert">
+    *The value is required.
+  </span>
+</div>
+
+<hr>
+
+<div class="silkscreen-dropdown common-me-lg">
+  <form>
+    <div class="silkscreen-dropdown__title">
+      <p [ngSwitch]="silkscreenData.BaseObject.RuleItemList.length">
+        <span *ngSwitchCase="0">- -</span>
+        <span *ngSwitchCase="1">{{ silkscreenData.BaseObject.RuleItemList[0].Name }}</span>
+        <span *ngSwitchDefault>{{ silkscreenData.BaseObject.RuleItemList.length }} objects selected</span>
+      </p>
+      <hr>
+    </div>
+    <div class="dropdown">
+        <div class="dropdown-item"
+        *ngFor="let optionItem of basedOnList"
+        >
+          <!-- unchecked -->
+          <img *ngIf="!hasBasedOnItem(optionItem.Name)" class="silkscreen-dropdown__icon"
+          src="../../../assets/icon/unchecked.svg"
+          (click)="setBasedOn(optionItem)"/>
+
+          <!-- checked -->
+          <img *ngIf="hasBasedOnItem(optionItem.Name)"  class="silkscreen-dropdown__icon"
+          src="../../../assets/icon/checked.svg"
+          (click)="removeBasedOn(optionItem.Name)"/>
+
+          <p>{{optionItem.Name}}</p>
+        </div>
+    </div>
+  </form>
+</div>
+
+
