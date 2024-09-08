@@ -1,0 +1,11 @@
+<div class="formGroup">
+  <label for="value02">不可為0或負數</label>
+  <input class="formControl" type="number" id="value02" name="value02"
+  #iValue02="ngModel"
+  [(ngModel)]="value02"
+  [ngModelOptions]="{ updateOn: 'blur' }"
+  pattern="^(?!0$)(?!-).*\d+$">
+</div>
+<div class="form__errors" *ngIf="iValue02.errors && iValue02.touched">
+  <p *ngIf="iValue02.hasError('pattern')">不可為0或負數</p>
+</div>
