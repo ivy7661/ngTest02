@@ -1,20 +1,109 @@
-<div class="box"></div>
+<form #form="ngForm" class="form">
+  <div class="formGroup">
+    <label for="name">姓名</label>
+    <input class="formControl" type="text" id="name" name="name"
+    #iName="ngModel"
+    [(ngModel)]="formData.name"
+    [ngModelOptions]="{ updateOn: 'blur' }"
+    (ngModelChange)="updateButtonState(form)"
+    pattern="^(?!.*[@#$%^*]).*$" required>
+  </div>
+  <div class="form__errors" *ngIf="iName.errors && iName.touched">
+    <p *ngIf="iName.hasError('required')">姓名為必填</p>
+    <p *ngIf="iName.hasError('pattern')">姓名格式錯誤</p>
+  </div>
 
+  <div class="form-group">
+    <label for="email">電子信箱</label>
+    <input type="text" id="email" name="email" #iEmail="ngModel"
+    [(ngModel)]="formData.email"
+    [ngModelOptions]="{ updateOn: 'blur' }"
+    (ngModelChange)="updateButtonState(form)"
+    pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$" required>
+  </div>
+  <div class="form__errors" *ngIf="iEmail.errors && iEmail.touched">
+    <p *ngIf="iEmail.hasError('required')">電子信箱為必填</p>
+    <p *ngIf="iEmail.hasError('pattern')">電子信箱格式錯誤</p>
+  </div>
 
-<div class="element"></div>
+  <div class="formGroup">
+    <label for="phone">手機號碼</label>
+    <input class="formControl" type="text" id="phone" name="phone"
+    #iPhone="ngModel"
+    [(ngModel)]="formData.phone"
+    [ngModelOptions]="{ updateOn: 'blur' }"
+    (ngModelChange)="updateButtonState(form)"
+    pattern="^[a-zA-Z0-9\s,'-，。\u4e00-\u9fa5]*$" required>
+  </div>
+  <div class="form__errors" *ngIf="iPhone.errors && iPhone.touched">
+    <p *ngIf="iPhone.hasError('required')">手機號碼為必填</p>
+    <p *ngIf="iPhone.hasError('pattern')">手機號碼格式錯誤</p>
+  </div>
 
-  <!-- <form-field class="main-right-main-row checkbox-dropdown" appearance="underline">
-    <dropdown  [padding]="'0 10px 0 0'" [type]="'checkbox'" [fontColor]="data.Component.length === 0 ? '#c8c8c8' : '#646464'" [fontSize]="'1vw'" [lineHeight]="'40px'">
-      <dropdown-item *ngFor="let text of componentType">
-        <label class="checkbox-dropdown__item">
-          <input class="checkbox-dropdown__input" type="checkbox" (change)="setSelectValue('Component', text)">
-          <i class="checkbox-dropdown__checkbox"><svg><polyline points="0,3 3,7 8,0" /></svg></i>
-          <p class="checkbox-dropdown__text">{{text}}</p>
-        </label>
-      </dropdown-item>
-    </dropdown>
-  </form-field> -->
+  <div class="formGroup">
+    <label for="VATNumber">統編</label>
+    <input class="formControl" type="text" id="VATNumber" name="VATNumber"
+    #iVATNumber="ngModel"
+    [(ngModel)]="formData.VATNumber"
+    [ngModelOptions]="{ updateOn: 'blur' }"
+    (ngModelChange)="updateButtonState(form)"
+    pattern="^\d{8}$">
+  </div>
+  <div class="form__errors" *ngIf="iVATNumber.errors && iVATNumber.touched">
+    <p *ngIf="iVATNumber.hasError('pattern')">統編格式錯誤</p>
+    <p *ngIf="iVATNumber.hasError('bothFilled')">統編、載具僅能擇一填寫</p>
+  </div>
 
-  <!-- <div class="main-right-main-row" *ngIf="data.Component.indexOf('Other') !== -1">
-    <input class="main-right-main-row__input" type="text" placeholder="Please specify" [(ngModel)]="data.OtherComponent">
+  <div class="formGroup">
+    <label for="EInvoice">載具</label>
+    <input class="formControl" type="text" id="EInvoice" name="EInvoice"
+    #iEInvoice="ngModel"
+    [(ngModel)]="formData.EInvoice"
+    [ngModelOptions]="{ updateOn: 'blur' }"
+    (ngModelChange)="updateButtonState(form)"
+    pattern="^/[\dA-Z0-9+-\.]{7}$">
+  </div>
+  <div class="form__errors" *ngIf="iEInvoice.errors && iEInvoice.touched">
+    <p *ngIf="iEInvoice.hasError('pattern')">載具格式錯誤</p>
+    <p *ngIf="iEInvoice.hasError('bothFilled')">統編、載具僅能擇一填寫</p>
+  </div>
+
+  <div class="formGroup">
+    <label for="value01">0或正數</label>
+    <input class="formControl" type="number" id="value01" name="value01"
+    #iValue01="ngModel"
+    [(ngModel)]="formData.value01"
+    [ngModelOptions]="{ updateOn: 'blur' }"
+    (ngModelChange)="updateButtonState(form)"
+    min="0">
+  </div>
+  <div class="form__errors" *ngIf="iValue01.errors && iValue01.touched">
+    <p *ngIf="iValue01.hasError('min')">須為0或正數</p>
+  </div>
+
+  <!-- <div class="formGroup">
+    <label for="value02">不可為0或負數</label>
+    <input class="formControl" type="number" id="value02" name="value02"
+    #iValue02="ngModel"
+    [(ngModel)]="formData.value02"
+    [ngModelOptions]="{ updateOn: 'blur' }"
+    (ngModelChange)="updateButtonState(form)"
+    pattern="^(?!0$)(?!-).*\d+$">
+  </div>
+  <div class="form__errors" *ngIf="iValue02.errors && iValue02.touched">
+    <p *ngIf="iValue02.hasError('pattern')">不可為0或負數</p>
   </div> -->
+
+  <h3>inside form</h3>
+  <inside-form [value02]="formData.value02"></inside-form>
+
+
+
+  <label for="tool">我是下拉選單</label>
+  <input type="text" id="tool" name="tool" [(ngModel)]="formData.tool" (blur)="isChecked = true"
+  >
+  <p *ngIf="!formData.tool && isChecked" class="form__errors">下拉選單必選</p>
+
+</form>
+
+<button type="button" (click)="checkErrors(form)" [disabled]="isButtonDisabled">送出</button>
