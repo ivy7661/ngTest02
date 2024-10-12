@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input, Renderer2 } from '@angular/core';
 
 type IBtnDirective = 'primary' | 'secondary' | 'outline';
 
@@ -18,18 +18,19 @@ export class UtilityButtonDirective {
     hoverColor?: string;
     fontFamily?: string;
   };
-
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-  ngOnInit() {
-    this.setButtonStyle();
+  @HostBinding('style.--element-height') get getHeight() {
+    return this.customHeight ? `${this.customHeight}px` : null;
+  }
 
+  @HostBinding('class') get classList() {
+    return `utility-btn__${this.btnType}`;
+  }
+
+  ngOnInit() {
     if (this.customRound) {
       this.setCustomRoundStyle();
-    }
-
-    if (this.customHeight) {
-      this.renderer.setStyle(this.el.nativeElement, 'height', `${this.customHeight}px`);
     }
 
     if (this.customWidth) {
@@ -37,24 +38,8 @@ export class UtilityButtonDirective {
     }
   }
 
-  private setButtonStyle() {
-    switch (this.btnType) {
-      case 'primary':
-        this.renderer.setStyle(this.el.nativeElement, 'background', '#fa0');
-        this.renderer.setStyle(this.el.nativeElement, 'color', '#fff');
-        this.renderer.setStyle(this.el.nativeElement, 'border', '1px solid #007bff');
-        break;
-      case 'secondary':
-        this.renderer.setStyle(this.el.nativeElement, 'background', '#6c757d');
-        this.renderer.setStyle(this.el.nativeElement, 'color', '#fff');
-        this.renderer.setStyle(this.el.nativeElement, 'border', '1px solid #6c757d');
-        break;
-      case 'outline':
-        this.renderer.setStyle(this.el.nativeElement, 'background', 'transparent');
-        this.renderer.setStyle(this.el.nativeElement, 'color', '#007bff');
-        this.renderer.setStyle(this.el.nativeElement, 'border', '1px solid #007bff');
-        break;
-    }
+  public highlight(color: string) {
+    this.renderer.setStyle(this.el.nativeElement, 'backgroundColor', color);
   }
 
   private setCustomRoundStyle() {

@@ -1,42 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
-import { IRuleItemContainer } from '../@models/product.model';
+import { IProduct } from '../@models/product.model';
 import { ISilkscreenData } from '../@models/rule.model';
+import { emit } from 'process';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   public ruleSubject = new Subject();
-
-  public ruleItem: IRuleItemContainer = {
-    env: {},
-    silkscreenData : {
-      BaseObject: {
-        RuleItemList: [
-          {
-            Name: 'Outline',
-            Method: 'AirGap',
-            Value: {
-              Method: 'ConstantValue',
-              Value: 0.2
-            }
-          },
-          {
-            Name: 'secondOutline',
-            Method: 'AirGap',
-            Value: {
-              Method: 'ConstantValue',
-              Value: 0.2
-            }
-          }
-        ],
-      }
-    }
+  private mode = new Subject();
+  public mode$ = this.mode.asObservable();
+  private productData = new Subject();
+  public productData$ = this.productData.asObservable();
+  public data = {
+    id: 1,
+    name: 'lemon'
   }
 
   public emitMode() {
-    this.ruleSubject.next('edit');
+    setTimeout(()=> {
+      this.mode.next('edit');
+
+    },1000)
+  }
+
+  public getData() {
+    setTimeout(()=> {
+      this.mode.next(this.data);
+    },1000)
   }
 
   public silkscreenData: ISilkscreenData = {

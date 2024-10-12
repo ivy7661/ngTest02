@@ -1,15 +1,3 @@
-<h3>子元件</h3>
-<app-child [productData]="productData"></app-child>
-<hr>
+<app-child [(name)]="name"></app-child>
 
-<hr>
-<h3>父元件 Product data</h3>
-<p>ID：{{productData.id}}</p>
-<p>Product：{{productData.name}}</p>
-
-<h3>父元件 clerk</h3>
-<p>clerk name：{{parentClerk.name}}</p>
-
-<hr>
-
-
+<h3>父元件 Name： {{name}}</h3>

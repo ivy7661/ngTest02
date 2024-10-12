@@ -69,7 +69,6 @@ export class SystemGroupComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.silkscreenData = this.productService.ruleItem.silkscreenData;
   }
 
   public setBasedOn(item: IBaseOnItem) {

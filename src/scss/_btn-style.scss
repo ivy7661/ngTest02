@@ -1,0 +1,144 @@
+%utilityButtonBase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  font-style: normal;
+}
+
+@mixin utilityButtonRadius($radius) {
+  border-radius: calc($radius * 1px);
+}
+
+@mixin utilityButtonEvent (
+  $underline: false,
+  $hoverBgColor: #add8e6,
+  $hoverColor: #000,
+  $hoverBorder: none,
+  $activeBgColor: #add8e6,
+  $activeColor: #000,
+  $disabledBgColor: gray,
+  $disabledColor: #000,
+  $disabledBorder: none
+) {
+  &:hover:not(:disabled) {
+    background: $hoverBgColor;
+    color: $hoverColor;
+    border-color: $hoverBorder;
+
+    @if $underline {
+      border-bottom-color: $hoverColor;
+    }
+  }
+
+  &:active:not(:disabled) {
+    background: $activeBgColor;
+    color: $activeColor;
+    border-color: $activeColor;
+
+    @if $underline {
+      border-bottom-color: $activeColor;
+    }
+  }
+
+  &:disabled {
+    background: $disabledBgColor;
+    color: $disabledColor;
+    cursor: not-allowed;
+
+    @if $underline {
+      border-bottom-color: $disabledColor;
+    } @else {
+      border-color: $disabledBorder;
+    }
+  }
+}
+
+.utility-btn__primary {
+  @extend  %utilityButtonBase;
+  @include utilityButtonRadius(10);
+
+  width: calc(var(--utility-width, 93) * 1px);
+  height: calc(var(--utility-height, 38) * 1px);
+  background: #add8e6;
+  gap: 10px;
+  color: #000;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-family: montserrat_semibold;
+  line-height: 18.29px;
+  letter-spacing: -.2px;
+
+  @include utilityButtonEvent;
+}
+
+.utility-btn__primary-icon {
+  @extend  %utilityButtonBase;
+  @include utilityButtonRadius(10);
+
+  width: fit-content;
+  height: calc(var(--utility-height, 38) * 1px);
+  background: #add8e6;
+  gap: 10px;
+  color: #ccc;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-family: montserrat_semibold;
+  line-height: 18.29px;
+  letter-spacing: -.2px;
+
+  @include utilityButtonEvent;
+}
+
+.utility-btn__text {
+  @extend  %utilityButtonBase;
+
+  width: fit-content;
+  height: fit-content;
+  color: var(--brand-secondary-4);
+  font-size: 15px;
+  font-family: montserrat_semibold;
+  line-height: 17.29px;
+  letter-spacing: -.2px;
+
+  @include utilityButtonEvent(
+    false,
+    transparent,
+    var(--brand-primary),
+    none, transparent,
+    var(--brand-secondary-4),
+    transparent,
+    var(--natural-secondary-2_dark)
+  );
+}
+
+.utility-btn__secondary {
+  @extend  %utilityButtonBase;
+  @include utilityButtonRadius(10);
+
+  width: calc(var(--utility-width, 93) * 1px);
+  height: calc(var(--utility-height, 38) * 1px);
+  border: 1.5px solid #add8e6;
+  gap: 10px;
+  background-color: transparent;
+  color: #add8e6;
+  font-size: 15px;
+  font-family: montserrat_semibold;
+  line-height: 18.29px;
+
+  @include utilityButtonEvent(
+    false,
+    var(--primary-blue-5),
+    #add8e6,
+    #add8e6,
+    var(--primary-blue-5),
+    #add8e6,
+    transparent,
+    #000,
+    var(--gray-color_6)
+  );
+
+}
