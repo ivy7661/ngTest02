@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ChildComponent } from '../../component/child/child.component';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-parent',
@@ -12,5 +13,6 @@ import { NgFor, NgIf } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ParentComponent {
-  public name = 'John';
+
+
 }

@@ -1,18 +1,11 @@
-img {
-  width: 200px;
-  height: 150px;
-  object-fit: cover;
-  margin-right: 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
-    transform: scale(1.1);
-  }
+.content-container {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
 }
 
-.flex {
-  display: flex;
+.loading {
+  text-align: center;
+  margin-top: 20px;
 }

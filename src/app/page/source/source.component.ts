@@ -1,24 +1,63 @@
-import { Component, ElementRef, inject, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { JsonPipe, KeyValue, NgClass, NgFor ,NgIf,NgStyle,NgSwitch, NgSwitchCase, NgSwitchDefault, NgTemplateOutlet } from '@angular/common';
+import { AfterViewInit, Component,computed,ElementRef,HostListener,inject,OnInit, QueryList, signal, TemplateRef, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UtilityButtonDirective } from '../../@directive/utility-button.directive';
-import { KeyValuePipe } from '@angular/common';
+import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
+import { Overlay, OverlayModule, OverlayRef } from '@angular/cdk/overlay';
+import { OverlayContentComponent } from '../../component/overlay-content/overlay-content.component';
+import { NgIf } from '@angular/common';
+import { UserService } from '../../user.service';
+import { ParentComponent } from '../parent/parent.component';
 @Component({
   selector: 'app-source',
   standalone: true,
-  imports: [NgClass, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, NgIf, NgTemplateOutlet, JsonPipe, FormsModule, UtilityButtonDirective, NgStyle, KeyValuePipe],
+  imports: [ FormsModule, PortalModule, OverlayModule],
   templateUrl: './source.component.html',
   styleUrl: './source.component.scss'
 })
 export class SourceComponent implements OnInit {
+  @ViewChild('loadingDiv') loadingElement!: ElementRef<HTMLDivElement>;
+  isLoading = false;
+  content: string[] = [];
 
-  public num = 123;
-  public str = this.num.toString();
-  ngOnInit(): void {
-    console.log(this.str);
-    console.log(typeof this.str);
-
-
+  ngOnInit() {
+    this.loadMoreContent();
   }
 
+  ngAfterViewInit() {
+    // 確保 loadingElement 已經被正確初始化
+    if (!this.loadingElement) {
+      console.error('loadingElement 未被正確初始化');
+    }
+  }
+
+  onScroll() {
+    if (this.isLoading) return;
+
+    const scrollPosition = window.scrollY + window.innerHeight;
+    const bottomPosition = document.documentElement.scrollHeight;
+
+    if (scrollPosition >= bottomPosition - 100) {
+      this.loadMoreContent();
+    }
+  }
+
+  loadMoreContent() {
+    this.isLoading = true;
+
+    // 使用 loadingElement 操作樣式
+    if (this.loadingElement) {
+      this.loadingElement.nativeElement.style.display = 'block';
+    }
+
+    // 模擬延遲加載
+    setTimeout(() => {
+      const newContent = Array.from({ length: 10 }, (_, index) => `內容項目 ${this.content.length + index + 1}`);
+      this.content = [...this.content, ...newContent];
+
+      this.isLoading = false;
+
+      if (this.loadingElement) {
+        this.loadingElement.nativeElement.style.display = 'none';
+      }
+    }, 1500);
+  }
 }
